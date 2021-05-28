@@ -58,6 +58,5 @@ resource google_cloudbuild_trigger cloud-run-demo-push-trigger {
 
 resource google_cloud_run_service cloud-run-demo-service {
   name = local.repo_name
-  location = module.infra.locationA.region
-
+  location = "europe-central2" # Warszawa
 }
