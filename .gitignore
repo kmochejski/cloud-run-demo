@@ -162,3 +162,12 @@ com_crashlytics_export_strings.xml
 crashlytics.properties
 crashlytics-build.properties
 fabric.properties
+
+# All terraform state files. Production should be on remote state, dev should be private only.
+/gcp/**/terraform.tfstate*
+
+# Terraform internal files
+/gcp/**/.terraform*
+
+# local settings
+/gcp/**/local.auto.tfvars
