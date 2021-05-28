@@ -6,14 +6,17 @@ locals {
 
 resource google_cloudbuild_trigger cloud-run-demo-push-trigger {
 
-  trigger_template {
-    branch_name = local.branch_name
-    repo_name = local.repo_name
-  }
+//  trigger_template {
+//    branch_name = local.branch_name
+//    repo_name = local.repo_name
+//  }
 
   github {
     name = local.repo_name
     owner = "krzysztofmo"
+    push {
+      branch = local.branch_name
+    }
   }
 
   build {
@@ -35,7 +38,7 @@ resource google_cloudbuild_trigger cloud-run-demo-push-trigger {
         "push",
         local.image
       ]
-      timeout = "1200s"
+//      timeout = "1200s"
     }
 
     #Deploy container image to Cloud Run
@@ -59,4 +62,5 @@ resource google_cloudbuild_trigger cloud-run-demo-push-trigger {
 resource google_cloud_run_service cloud-run-demo-service {
   name = local.repo_name
   location = "europe-central2" # Warszawa
+  project = var.dev_project
 }
